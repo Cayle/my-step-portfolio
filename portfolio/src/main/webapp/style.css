@@ -7,3 +7,9 @@
 #greeting-container {
   margin-top: 20px;
 }
+
+.my-image {
+    border-radius: 10%;
+    width: 40%;
+    height: 40%;
+}
