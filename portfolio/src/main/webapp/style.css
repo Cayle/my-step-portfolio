@@ -17,3 +17,8 @@
 .body-image {
     background-image: url(/images/bg1.png);
 }
+
+img.resize {
+  max-width:20%;
+  max-height:20%;
+}
