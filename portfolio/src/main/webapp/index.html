@@ -9,6 +9,9 @@
       <!-- Import my local style sheet -->
     <link rel="stylesheet" href="style.css">
 
+    <!-- Include the required jquery CDN -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
       <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>  
     <meta charset="UTF-8">
@@ -16,19 +19,57 @@
     <title>Caleb's Portfolio</title>
   </head>
   <body class="body-image">
-    <div id="content">
-      <h1>Caleb's Portfolio</h1>
-      <p>This is a detailed portfolio about me.</p>
-        <p>
-          Welcome to my personal page. Here, you will learn about different areas of my life: career, education, hobbies, and favourites.
-        </p>
+    <div class="navbar-fixed">
+        <!-- Dropdown for Color -->
+        <ul id="dropdown1" class="dropdown-content">
+            <li><a href="#!">Blue</a></li>
+            <li class="divider"></li>
+            <li><a href="#!">Black</a></li>
+            <li class="divider"></li>
+            <li><a href="#!">Pink</a></li>
+        </ul>
 
-        <p>
-            <img src = "/images/caleb01.jpeg" class="my-image">
-            <img src = "/images/caleb02.jpeg" class="my-image">
-            <img src = "/images/caleb03.jpeg" class="my-image">
-        </p>
+        <!-- Dropdown for Font -->
+        <ul id="dropdown2" class="dropdown-content">
+            <li><a href="#!">Calibri</a></li>
+            <li class="divider"></li>
+            <li><a href="#!">Bold Font</a></li>
+            <li class="divider"></li>
+            <li><a href="#!">Composer</a></li>
+        </ul>
+        <!-- Dropdown for Background Pattern -->
+        <ul id="dropdown3" class="dropdown-content">
+            <li><a href="#!">Tech</a></li>
+            <li class="divider"></li>
+            <li><a href="#!">Pattern Two</a></li>
+            <li class="divider"></li>
+            <li><a href="#!">Pattern Three</a></li>
+        </ul>
+        <nav>
+            <div class="nav-wrapper">
+                <a href="#!" class="brand-logo">Caleb's Portfolio</a>
+                <ul class="right hide-on-med-and-down">
+                    <!-- Dropdown Triggers -->
+                    <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">Choose Color<i class="material-icons right">arrow_drop_down</i></a></li>
+                    <li><a class="dropdown-trigger" href="#!" data-target="dropdown2">Choose Font<i class="material-icons right">arrow_drop_down</i></a></li>
+                    <li><a class="dropdown-trigger" href="#!" data-target="dropdown3">Background Pattern<i class="material-icons right">arrow_drop_down</i></a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+    <div class="container">
+        
+        <blockquote>
+          I'm Caleb. A Rising sophomore and Computer Science major at Fisk University.<br>
+          Welcome to my personal page. Here, I will show you the different aspects of my life: career, education, music, hobbies, and favoutites.<br>
+        </blockquote>
+      <h1>Caleb's Portfolio</h1>
+        <img src = "/images/caleb01.jpeg" class="my-image">
+        <img src = "/images/caleb02.jpeg" class="my-image">
+        <img src = "/images/caleb03.jpeg" class="my-image">
       <p>Click here to see one of my random fun fact:</p>
+
+
       <button onclick="randomFunFacts()">Facts! :)</button>
       <div id="factContainer"><div>
     </div>

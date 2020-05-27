@@ -13,6 +13,15 @@
 // limitations under the License.
 
 /**
+ * Initializes the dropdown menu on the top fixed navbar.
+ */
+$(document).ready(function(){
+    $(".dropdown-trigger").dropdown();
+});
+
+
+
+/**
  * Adds a random fun fact about me on each click.
  */
 
