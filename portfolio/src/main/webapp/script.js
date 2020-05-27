@@ -21,6 +21,7 @@ $(document).ready(function(){
 
 
 
+
 /**
  * Adds a random fun fact about me on each click.
  */
@@ -29,7 +30,7 @@ function randomFunFacts() {
   const funFacts =
       ['I"m a  Rising sophomore Computer Science major',
        'This is my first internship', 
-      'I was raised and high-schooled in Lagos, Nigeria',
+       'I was raised and high-schooled in Lagos, Nigeria',
        'I speak three languages: English, and two native lanuages, Yoruba and Efik'];
 
   // Picking a random fact.
