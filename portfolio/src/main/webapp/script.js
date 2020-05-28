@@ -40,3 +40,13 @@ function randomFunFacts() {
   const factBox = document.getElementById('factBox');
   factBox.innerHTML = myFact;
 }
+
+var slides = document.querySelectorAll('#slides .image-box');
+var currentSlide = 0;
+var slideInterval = setInterval(nextSlide,3000);
+
+function nextSlide() {
+    slides[currentSlide].className = 'image-box';
+    currentSlide = (currentSlide+1)%slides.length;
+    slides[currentSlide].className = 'image-box current';
+}
