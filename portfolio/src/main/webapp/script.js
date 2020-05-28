@@ -37,6 +37,6 @@ function randomFunFacts() {
   const myFact = funFacts[Math.floor(Math.random() * funFacts.length)];
 
   // Add it to the page.
-  const factContainer = document.getElementById('factContainer');
-  factContainer.innerText = myFact;
+  const factBox = document.getElementById('factBox');
+  factBox.innerHTML = myFact;
 }
