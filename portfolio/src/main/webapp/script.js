@@ -13,16 +13,40 @@
 // limitations under the License.
 
 /**
- * Adds a random greeting to the page.
+ * Initializes the dropdown menu on the top fixed navbar.
  */
-function addRandomGreeting() {
-  const greetings =
-      ['Hello world!', '¡Hola Mundo!', '你好，世界！', 'Bonjour le monde!'];
+$(document).ready(function(){
+    $(".dropdown-trigger").dropdown();
+});
 
-  // Pick a random greeting.
-  const greeting = greetings[Math.floor(Math.random() * greetings.length)];
+
+
+
+/**
+ * Adds a random fun fact about me on each click.
+ */
+
+function randomFunFacts() {
+  const funFacts =
+      ['I"m a  Rising sophomore Computer Science major',
+       'This is my first internship', 
+       'I was raised and high-schooled in Lagos, Nigeria',
+       'I speak three languages: English, and two native lanuages, Yoruba and Efik'];
+
+  // Picking a random fact.
+  const myFact = funFacts[Math.floor(Math.random() * funFacts.length)];
 
   // Add it to the page.
-  const greetingContainer = document.getElementById('greeting-container');
-  greetingContainer.innerText = greeting;
+  const factBox = document.getElementById('factBox');
+  factBox.innerHTML = myFact;
+}
+
+var slides = document.querySelectorAll('#slides .image-box');
+var currentSlide = 0;
+var slideInterval = setInterval(nextSlide,3000);
+
+function nextSlide() {
+    slides[currentSlide].className = 'image-box';
+    currentSlide = (currentSlide+1)%slides.length;
+    slides[currentSlide].className = 'image-box current';
 }

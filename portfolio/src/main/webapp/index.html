@@ -1,18 +1,130 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="UTF-8">
-    <title>My Portfolio</title>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+
+      <!-- Import my local style sheet -->
     <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
+
+    <!-- Include the required jquery CDN -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+      <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>  
+    <meta charset="UTF-8">
+    
+    <title>Caleb's Portfolio</title>
   </head>
-  <body>
-    <div id="content">
-      <h1>My Portfolio</h1>
-      <p>This is my portfolio.</p>
-      <p>Click here to get a random message:</p>
-      <button onclick="addRandomGreeting()">Hello</button>
-      <div id="greeting-container"></div>
+  <body class="body-image">
+    <div class="navbar-fixed">
+        <!-- Dropdown for Color -->
+        <ul id="dropdown1" class="dropdown-content">
+            <li><a href="#!">Blue</a></li>
+            <li class="divider"></li>
+            <li><a href="#!">Black</a></li>
+            <li class="divider"></li>
+            <li><a href="#!">Pink</a></li>
+        </ul>
+
+        <!-- Dropdown for Font -->
+        <ul id="dropdown2" class="dropdown-content">
+            <li><a href="#!">Calibri</a></li>
+            <li class="divider"></li>
+            <li><a href="#!">Bold Font</a></li>
+            <li class="divider"></li>
+            <li><a href="#!">Composer</a></li>
+        </ul>
+        <!-- Dropdown for Background Pattern -->
+        <ul id="dropdown3" class="dropdown-content">
+            <li><a href="#!">Tech</a></li>
+            <li class="divider"></li>
+            <li><a href="#!">Pattern Two</a></li>
+            <li class="divider"></li>
+            <li><a href="#!">Pattern Three</a></li>
+        </ul>
+        <nav>
+            <div class="nav-wrapper">
+                <a href="#!" class="brand-logo">Caleb's Portfolio</a>
+                <ul class="right hide-on-med-and-down">
+                    <!-- Dropdown Triggers -->
+                    <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">Choose Color<i class="material-icons right">arrow_drop_down</i></a></li>
+                    <li><a class="dropdown-trigger" href="#!" data-target="dropdown2">Choose Font<i class="material-icons right">arrow_drop_down</i></a></li>
+                    <li><a class="dropdown-trigger" href="#!" data-target="dropdown3">Background Pattern<i class="material-icons right">arrow_drop_down</i></a></li>
+                </ul>
+            </div>
+        </nav>
     </div>
+    <div class="container">
+        
+        <blockquote class="flow-text">
+          I'm Caleb. A Rising sophomore and Computer Science major at Fisk University.<br>
+          Welcome to my personal page. Here, I will show you the different aspects of my life: career, education, music, hobbies, and favoutites.<br>
+        </blockquote>
+
+        <div class="row">
+            <div class="col s12 m12 l6" id="slides">
+                <p class ="z-depth-5 image-box current">
+                    <img src = "/images/caleb01.jpeg" class="my-image">
+                </p>
+                <p class ="z-depth-5 image-box">
+                    <img src = "/images/caleb02.jpeg" class="my-image">
+                </p>
+                <p class ="z-depth-5 image-box">
+                    <img src = "/images/caleb03.jpeg" class="my-image">
+                </p>
+                <p class ="z-depth-5 image-box">
+                    <img src = "/images/caleb04.jpeg" class="my-image">
+                </p>
+                <p class ="z-depth-5 image-box">
+                    <img src = "/images/caleb05.jpeg" class="my-image">
+                </p>
+                <p class ="z-depth-5 image-box">
+                    <img src = "/images/caleb06.jpeg" class="my-image">
+                </p>
+            </div>
+
+            <div class="col s12 m12 l6">
+                <p class = "z-depth-5 flow-text fact-box" id="factBox">
+                    I'm a Computer Science Major at Fisk University.
+                </p>
+
+                <center><a class="waves-effect waves-light btn-large" style:"margin-top: 20%" onclick="randomFunFacts()">
+                    <i class="material-icons right">sentiment_very_satisfied</i>click me
+                </a></center>
+        
+            </div>
+        </div>
+
+    </div>
+
+    <footer class="page-footer">
+        <div class="footer-copyright">
+            <!-- <div class="container"> -->
+            © 2020 Copyright Text, Caleb Inc.
+            <a href="https://instagram.com/call.me_cayley" target="_blank">
+                <img src="/images/instagram.png" class="resize">
+            </a>
+            <a href ="https://github.com/Cayle" target="_blank">
+                <img src="/images/github.png" class="resize">
+            </a>
+            <a href="https://linkedin.com/in/calebabhulimhen" target="_blank">
+                <img src="/images/linkedin.png" class="resize">
+            </a>
+            <a href="mailto: calebabhulimhen@gmail.com" target="_blank">
+                <img src="/images/gmail.png" class="resize">
+            </a>
+
+            <!-- </div> -->
+        </div>
+    </footer>
+
+
+    <!--JavaScript at end of body for optimized loading-->
+      <script type="text/javascript" src="js/materialize.min.js"></script>
+    <!-- Importing my local javascript -->
+      <script src="script.js"></script>
   </body>
 </html>

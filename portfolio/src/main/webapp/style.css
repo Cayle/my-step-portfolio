@@ -7,3 +7,61 @@
 #greeting-container {
   margin-top: 20px;
 }
+
+.my-image {
+    border-radius: 5%;
+    width: 100%;
+    height: 100%;
+}
+
+.body-image {
+    background-image: url(/images/bg1.png);
+}
+
+img.resize {
+  max-width:20%;
+  max-height:20%;
+}
+
+.image-box {
+    margin: 10px;
+    border-radius: 5%;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    /* z-index: 1; */
+    -webkit-transition: opacity 1s;
+    -moz-transition: opacity 1s;
+    -o-transition: opacity 1s;
+    transition: opacity 1s;
+}
+
+.footer-fixed {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  width: 100%;
+  color: darksalmon;
+}
+
+.fact-box {
+    padding: 20%;
+    margin: 10px;
+    border-radius: 2%;
+}
+
+#slides {
+    position: relative;
+    height: 450px;
+    padding: 0px;
+    margin: 0px;
+}
+
+.current {
+    opacity: 1;
+    z-index: 2;
+}
