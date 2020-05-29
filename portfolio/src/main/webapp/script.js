@@ -29,10 +29,14 @@ $(document).ready(function () {
 
 function randomFunFacts() {
   const funFacts = [
-    'I"m a  Rising sophomore Computer Science major',
-    "This is my first internship",
-    "I was raised and high-schooled in Lagos, Nigeria",
+    'I"m a rising sophomore Computer Science major at Fisk University.',
+    "This is my first internship.",
+    "I was raised and high-schooled in Lagos, Nigeria.",
     "I speak three languages: English, and two native lanuages, Yoruba and Efik",
+    "I listen music a lot, my favorite genres are: rap, pop, and trap.",
+    "I also love doing my freestyle to lots of youtube beats, I prolly have enough tracks to make an album :)",
+    "Attending open mics and karaokes is my thing.",
+    "I participated in Google's CSSI-HBCU, Summer 2019 at NCCU."
   ];
 
   // Picking a random fact.
