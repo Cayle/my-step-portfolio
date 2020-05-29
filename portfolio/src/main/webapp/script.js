@@ -17,8 +17,12 @@
  */
 $(document).ready(function () {
   $(".dropdown-trigger").dropdown();
+  $('.tabs').tabs();
+
+  
 });
 
+        
 /**
  * Adds a random fun fact about me on each click.
  */
@@ -53,6 +57,9 @@ function changeColor(color) {
   color_boxes = document.querySelectorAll("#color-id");
   for (var i = 0; i < color_boxes.length; i++) {
     color_boxes[i].style.backgroundColor = color;
+    if (i == 1) {
+        color_boxes[i].style.color = color;
+    }
   }
 }
 
