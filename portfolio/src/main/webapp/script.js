@@ -86,3 +86,17 @@ function changePattern(pattern) {
     }
   }
 }
+
+async function retrieveComments() {
+    const response = await fetch("/data");
+    const message_json = await response.json();
+
+    var commentHtml = "";
+    var commentContainer = document.getElementById("comment-container");
+    for (var i = 0; i< message_json.length ; i++) {
+        var comment = message_json[i];
+        commentHtml = commentHtml + comment + "<br>";
+    }
+
+    commentContainer.innerHTML = commentHtml;
+}
