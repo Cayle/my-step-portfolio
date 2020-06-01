@@ -2,129 +2,232 @@
 <html>
   <head>
     <!--Import Google Icon Font-->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-      <!--Import materialize.css-->
-    <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <!--Import materialize.css-->
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="css/materialize.min.css"
+      media="screen,projection"
+    />
 
-      <!-- Import my local style sheet -->
-    <link rel="stylesheet" href="style.css">
+    <!-- Import my local style sheet -->
+    <link rel="stylesheet" href="style.css" />
 
     <!-- Include the required jquery CDN -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-      <!--Let browser know website is optimized for mobile-->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>  
-    <meta charset="UTF-8">
-    
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8" />
+
     <title>Caleb's Portfolio</title>
   </head>
   <body class="body-image">
     <div class="navbar-fixed">
-        <!-- Dropdown for Color -->
-        <ul id="dropdown1" class="dropdown-content">
-            <li><a href="#!">Blue</a></li>
-            <li class="divider"></li>
-            <li><a href="#!">Black</a></li>
-            <li class="divider"></li>
-            <li><a href="#!">Pink</a></li>
-        </ul>
+      <!-- Dropdown for Color -->
+      <ul id="dropdown1" class="dropdown-content">
+        <li><a href="#!" onclick="changeColor('teal')">Teal</a></li>
+        <li class="divider"></li>
+        <li><a href="#!" onclick="changeColor('grey')">Grey</a></li>
+        <li class="divider"></li>
+        <li><a href="#!" onclick="changeColor('pink')">Pink</a></li>
+      </ul>
 
-        <!-- Dropdown for Font -->
-        <ul id="dropdown2" class="dropdown-content">
-            <li><a href="#!">Calibri</a></li>
-            <li class="divider"></li>
-            <li><a href="#!">Bold Font</a></li>
-            <li class="divider"></li>
-            <li><a href="#!">Composer</a></li>
-        </ul>
-        <!-- Dropdown for Background Pattern -->
-        <ul id="dropdown3" class="dropdown-content">
-            <li><a href="#!">Tech</a></li>
-            <li class="divider"></li>
-            <li><a href="#!">Pattern Two</a></li>
-            <li class="divider"></li>
-            <li><a href="#!">Pattern Three</a></li>
-        </ul>
-        <nav>
-            <div class="nav-wrapper">
-                <a href="#!" class="brand-logo">Caleb's Portfolio</a>
-                <ul class="right hide-on-med-and-down">
-                    <!-- Dropdown Triggers -->
-                    <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">Choose Color<i class="material-icons right">arrow_drop_down</i></a></li>
-                    <li><a class="dropdown-trigger" href="#!" data-target="dropdown2">Choose Font<i class="material-icons right">arrow_drop_down</i></a></li>
-                    <li><a class="dropdown-trigger" href="#!" data-target="dropdown3">Background Pattern<i class="material-icons right">arrow_drop_down</i></a></li>
-                </ul>
-            </div>
-        </nav>
+      <!-- Dropdown for Font -->
+      <ul id="dropdown2" class="dropdown-content">
+        <li><a href="#!" onclick="changeFont('normal')">Default</a></li>
+        <li class="divider"></li>
+        <li><a href="#!" onclick="changeFont('italic')">Italic</a></li>
+        <li class="divider"></li>
+        <li><a href="#!" onclick="changeFont('oblique')">Oblique</a></li>
+      </ul>
+      <!-- Dropdown for Background Pattern -->
+      <ul id="dropdown3" class="dropdown-content">
+        <li><a href="#!" onclick="changePattern('one')">Pattern One</a></li>
+        <li class="divider"></li>
+        <li><a href="#!" onclick="changePattern('two')">Pattern Two</a></li>
+        <li class="divider"></li>
+        <li><a href="#!" onclick="changePattern('three')">Pattern Three</a></li>
+      </ul>
+      <nav>
+        <div class="nav-wrapper" id="color-id">
+          <a href="#!" class="brand-logo">Caleb's Portfolio</a>
+          <ul class="right hide-on-med-and-down">
+            <!-- Dropdown Triggers -->
+            <li>
+                <a class="dropdown-trigger" href="#!" data-target="dropdown1">
+                    Choose Color<i class="material-icons right">arrow_drop_down</i>
+                </a>
+            </li>
+            <li>
+                <a class="dropdown-trigger" href="#!" data-target="dropdown2">
+                    Choose Font Style <i class="material-icons right" >arrow_drop_down</i>
+                </a>
+            </li>
+            <li>
+                <a class="dropdown-trigger" href="#!" data-target="dropdown3">
+                    Background Pattern<i class="material-icons right">arrow_drop_down</i>
+                </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
     </div>
     <div class="container">
-        
-        <blockquote class="flow-text">
-          I'm Caleb. A Rising sophomore and Computer Science major at Fisk University.<br>
-          Welcome to my personal page. Here, I will show you the different aspects of my life: career, education, music, hobbies, and favoutites.<br>
-        </blockquote>
+      <blockquote class="flow-text" id="test">
+        I'm Caleb. A Rising sophomore and Computer Science major at Fisk
+        University.<br />
+        Welcome to my personal page. Here, I will show you the different aspects
+        of my life: career, education, music, hobbies, and favourites<br />
+      </blockquote>
 
-        <div class="row">
-            <div class="col s12 m12 l6" id="slides">
-                <p class ="z-depth-5 image-box current">
-                    <img src = "/images/caleb01.jpeg" class="my-image">
-                </p>
-                <p class ="z-depth-5 image-box">
-                    <img src = "/images/caleb02.jpeg" class="my-image">
-                </p>
-                <p class ="z-depth-5 image-box">
-                    <img src = "/images/caleb03.jpeg" class="my-image">
-                </p>
-                <p class ="z-depth-5 image-box">
-                    <img src = "/images/caleb04.jpeg" class="my-image">
-                </p>
-                <p class ="z-depth-5 image-box">
-                    <img src = "/images/caleb05.jpeg" class="my-image">
-                </p>
-                <p class ="z-depth-5 image-box">
-                    <img src = "/images/caleb06.jpeg" class="my-image">
-                </p>
-            </div>
-
-            <div class="col s12 m12 l6">
-                <p class = "z-depth-5 flow-text fact-box" id="factBox">
-                    I'm a Computer Science Major at Fisk University.
-                </p>
-
-                <center><a class="waves-effect waves-light btn-large" style:"margin-top: 20%" onclick="randomFunFacts()">
-                    <i class="material-icons right">sentiment_very_satisfied</i>click me
-                </a></center>
-        
-            </div>
+      <div class="row">
+        <div class="col s12 m12 l6 responsive-spaced-box" id="slides">
+          <p class="z-depth-5 image-box current">
+            <img src="/images/caleb01.jpeg" class="my-image" />
+          </p>
+          <p class="z-depth-5 image-box">
+            <img src="/images/caleb02.jpeg" class="my-image" />
+          </p>
+          <p class="z-depth-5 image-box">
+            <img src="/images/caleb03.jpeg" class="my-image" />
+          </p>
+          <p class="z-depth-5 image-box">
+            <img src="/images/caleb04.jpeg" class="my-image" />
+          </p>
+          <p class="z-depth-5 image-box">
+            <img src="/images/caleb05.jpeg" class="my-image" />
+          </p>
+          <p class="z-depth-5 image-box">
+            <img src="/images/caleb06.jpeg" class="my-image" />
+          </p>
         </div>
+
+        <div class="col s12 m12 l6 responsive-spaced-box">
+          <p class="z-depth-5 flow-text fact-box" id="factBox">
+            I'm a Computer Science Major at Fisk University.
+          </p>
+
+          <center>
+            <a class="waves-effect waves-light btn-large" onclick="randomFunFacts()">
+            <i class="material-icons right">sentiment_very_satisfied</i>click me</a>
+          </center>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col s12">
+            <ul class="tabs">
+                <li class="tab col s6" id="color-id">
+                    <a href="#test1" class="active">
+                        <i class="material-icons">collections</i>PROJECTS
+                    </a>
+                </li>
+                <li class="tab col s6" id="color-id">
+                    <a  href="#test2">
+                        <i class="material-icons">code</i>SKILL SET AND TECH STACK
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div id="test1" class="col s12">
+            <center>
+                <h1>
+                    <p class="flow-text">
+                    I've worked on a varieties of projects, some of my most outstanding ones are:
+                    </p>
+                </h1>
+            </center>
+            <blockquote>
+                <p class="flow-text">
+                    <span class="flow-text">
+                        Designed a personal voice assistant on my laptop that could:<br>
+                    </span>
+                    <ul>
+                        <li>Give weather updates.</li>
+                        <li>Google search with my voice and return the result.</li>
+                        <li>Read out trending local and international news.</li>
+                        <li>Send emails with voice prompt.</li>
+                        <li>And a lot of other exciting features.</li>
+                    </ul> 
+                    Technologies and Resources used include:<br>
+                    <ul>
+                        <li>Python: BeautifulSoup, Request, SpeechRecognition, Pyttsx3.</li>
+                        <li>Gmail API, Weather API, News.org API.</li>
+                    </ul>
+                </p>
+            </blockquote>
+
+            <blockquote>
+                <p class="flow-text">
+                    <span class="flow-text">
+                        Designed a personal mini blogging platform from scratch, some features are:<br>
+                    </span>
+                    <ul>
+                        <li>Make daily posts on my daily activities and struggles.</li>
+                        <li>Ability to edit already published posts.</li>
+                        <li>An interactive comment section.</li>
+                        <li>Customizable features based on user's interest.</li>
+                    </ul> 
+                    Technologies and Resources used include:<br>
+                    <ul>
+                        <li>Django: Python-based web framework.</li>
+                        <li>SqLite</li>
+                    </ul>
+                </p>
+            </blockquote>
+            
+        </div>
+        <div id="test2" class="col s12">
+            <p class="flow-text">
+                My Skill set and tech stack, with decreasing proficiency is:
+            </p>
+            <blockquote>
+                <ul>
+                    <li>Python</li>
+                    <li>Java</li>
+                    <li>Html</li>
+                    <li>Javascript</li>
+                    <li>Linux - Command Line usage</li>
+                    <li>CSS</li>
+                    <li>R</li>
+                    <li>Python Data Science tools- Numpy, Panda, etc</li>
+                    <li>C#</li>
+                    <li>Galaxy</li>
+                </ul>
+            </blockquote>
+        </div>
+      </div>
 
     </div>
 
-    <footer class="page-footer">
-        <div class="footer-copyright">
-            <!-- <div class="container"> -->
-            © 2020 Copyright Text, Caleb Inc.
-            <a href="https://instagram.com/call.me_cayley" target="_blank">
-                <img src="/images/instagram.png" class="resize">
-            </a>
-            <a href ="https://github.com/Cayle" target="_blank">
-                <img src="/images/github.png" class="resize">
-            </a>
-            <a href="https://linkedin.com/in/calebabhulimhen" target="_blank">
-                <img src="/images/linkedin.png" class="resize">
-            </a>
-            <a href="mailto: calebabhulimhen@gmail.com" target="_blank">
-                <img src="/images/gmail.png" class="resize">
-            </a>
+    <footer class="page-footer" id="color-id">
+      <div class="footer-copyright">
+        <!-- <div class="container"> -->
+        © 2020 Copyright Text, Caleb Inc.
+        <a href="https://instagram.com/call.me_cayley" target="_blank">
+          <img src="/images/instagram.png" class="resize" />
+        </a>
+        <a href="https://github.com/Cayle" target="_blank">
+          <img src="/images/github.png" class="resize" />
+        </a>
+        <a href="https://linkedin.com/in/calebabhulimhen" target="_blank">
+          <img src="/images/linkedin.png" class="resize" />
+        </a>
+        <a href="mailto: calebabhulimhen@gmail.com" target="_blank">
+          <img src="/images/gmail.png" class="resize" />
+        </a>
 
-            <!-- </div> -->
-        </div>
+        <!-- </div> -->
+      </div>
     </footer>
 
-
     <!--JavaScript at end of body for optimized loading-->
-      <script type="text/javascript" src="js/materialize.min.js"></script>
+    <script type="text/javascript" src="js/materialize.min.js"></script>
     <!-- Importing my local javascript -->
-      <script src="script.js"></script>
+    <script src="script.js"></script>
   </body>
 </html>
