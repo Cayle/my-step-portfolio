@@ -43,4 +43,12 @@ public class DataServlet extends HttpServlet {
         String messagesText = gson.toJson(this.messages);
         response.getWriter().println(messagesText);
     }
+    
+    //Receives the user comment and redirect to the homepage.
+    @Override
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String comment = request.getParameter("comment");
+        this.messages.add(comment);
+        response.sendRedirect("/index.html");
+    }
 }
