@@ -93,10 +93,6 @@ async function retrieveComments() {
 
     var commentHtml = "";
     var commentContainer = document.getElementById("comment-container");
-    // for (var i = 0; i< message_json.length ; i++) {
-    //     var comment = message_json[i];
-    //     commentHtml = commentHtml + comment + "<br>";
-    // }
 
     message_json.forEach(function(comment) {
         commentHtml = commentHtml + comment + "<br>";
