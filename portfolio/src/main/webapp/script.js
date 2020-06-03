@@ -94,8 +94,8 @@ async function retrieveComments() {
     var commentHtml = "";
     var commentContainer = document.getElementById("comment-container");
 
-    message_json.forEach(function(comment) {
-        commentHtml = commentHtml + comment + "<br>";
+    message_json.forEach(function(comments) {
+        commentHtml = commentHtml + comments.comment + " -----" + comments.name + "<br>";
     })
 
     commentContainer.innerHTML = commentHtml;
