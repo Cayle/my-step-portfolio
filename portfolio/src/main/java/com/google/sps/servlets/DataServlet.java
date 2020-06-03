@@ -34,15 +34,6 @@ import javax.servlet.http.HttpServletResponse;
 /** Servlet that returns some example content. TODO: modify this file to handle comments data */
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
-    private  List<String> messages;
-
-    @Override
-    public void init(){
-        this.messages = new ArrayList<String>();
-        this.messages.add("This site looks nice");
-        this.messages.add("I like the pictures");
-        this.messages.add("The colors are beautiful and perfect");
-    }
 
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -58,9 +49,7 @@ public class DataServlet extends HttpServlet {
             String comment =  (String) commentEntity.getProperty("comment");
             String name = (String) commentEntity.getProperty("name");
             long timestamp = (long) commentEntity.getProperty("timestamp");
-            System.out.println(comment + " " + name);
             Comments newComment =  new Comments(id, comment, name, timestamp);
-            System.out.println(newComment);
             comments.add(newComment);
         }
 
@@ -84,9 +73,6 @@ public class DataServlet extends HttpServlet {
        
         DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
         datastore.put(commentEntity);
-
-
-        this.messages.add(comment);
         response.sendRedirect("/index.html");
     }
 }
