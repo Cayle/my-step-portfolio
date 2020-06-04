@@ -35,7 +35,7 @@ public class NewTaskServlet extends HttpServlet {
     Entity taskEntity = new Entity("Task");
     taskEntity.setProperty("title", title);
     taskEntity.setProperty("timestamp", timestamp);
-
+    `     
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     datastore.put(taskEntity);
 

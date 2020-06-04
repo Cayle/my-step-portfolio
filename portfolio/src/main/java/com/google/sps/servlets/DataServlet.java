@@ -37,12 +37,22 @@ public class DataServlet extends HttpServlet {
 
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        System.out.println("hey, whats up !");
+        System.out.println(request);
+
         Query query = new Query("Comments").addSort("timestamp", SortDirection.DESCENDING);
 
         DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
         PreparedQuery results = datastore.prepare(query);
+        int result_length =0;
+
+        for (Entity commentEntity : results.asIterable()) {
+            result_length++;
+        }
 
         List<Comments> comments = new ArrayList<>();
+        int no_of_comments = Integer.parseInt(request.getParameter("no"));
+        int count_comments = 0;
 
         for (Entity commentEntity : results.asIterable()) {
             long id = commentEntity.getKey().getId();
@@ -51,6 +61,10 @@ public class DataServlet extends HttpServlet {
             long timestamp = (long) commentEntity.getProperty("timestamp");
             Comments newComment =  new Comments(id, comment, name, timestamp);
             comments.add(newComment);
+            count_comments++;
+            if (count_comments >= no_of_comments ) {
+                break;
+            }
         }
 
         response.setContentType("application/json;");

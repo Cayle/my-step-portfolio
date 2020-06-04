@@ -26,7 +26,7 @@
 
     <title>Caleb's Portfolio</title>
   </head>
-  <body class="body-image" onload="retrieveComments()">
+  <body class="body-image" onload="getCountComments()">
     <div class="navbar-fixed">
       <!-- Dropdown for Color -->
       <ul id="dropdown1" class="dropdown-content">
@@ -224,6 +224,12 @@
         <!-- </div> -->
       </div>
     </footer>
+
+    <div>
+        <input type="number" min="1" max="4" value="4" id="no_of_comments">
+        <button onclick="getCountComments()">GO !</button>
+    </div>
+
 
     <p id = "comment-container"></p>
 
