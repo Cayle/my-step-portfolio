@@ -87,30 +87,10 @@ function changePattern(pattern) {
   }
 }
 
-// async function getUserCommentsfromDataStore() {
-//     const response = await fetch("/data?no_of_comments=2");
-//     const message_json = await response.json();
-//     return message_json;
-// }
 
-
-// async function retrieveComments() {
-//     var no_of_comment = 4;
-//     const response = await fetch("/data?no="+no_of_comment);
-//     const message_json = await response.json();
-//     var commentHtml = "";
-//     var commentContainer = document.getElementById("comment-container");
-
-//     message_json.forEach(function(comments) {
-//         commentHtml = commentHtml + comments.comment + " --- -- " + comments.name + "<br>";
-//     })
-
-//     commentContainer.innerHTML = commentHtml;
-// }
-
-async function getCountComments(){
-    var no_of_comment = document.getElementById("no_of_comments").value;
-    const response = await fetch("/data?no="+no_of_comment);
+async function getCommentCount(){
+    var comment_count = document.getElementById("comment_count").value;
+    const response = await fetch("/data?comment_count=" + comment_count);
     const message_json = await response.json();
     
     var commentHtml = "";

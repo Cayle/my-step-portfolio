@@ -37,9 +37,6 @@ public class DataServlet extends HttpServlet {
 
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        System.out.println("hey, whats up !");
-        System.out.println(request);
-
         Query query = new Query("Comments").addSort("timestamp", SortDirection.DESCENDING);
 
         DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
@@ -51,18 +48,17 @@ public class DataServlet extends HttpServlet {
         }
 
         List<Comments> comments = new ArrayList<>();
-        int no_of_comments = Integer.parseInt(request.getParameter("no"));
-        int count_comments = 0;
+        int comment_count_target = Integer.parseInt(request.getParameter("comment_count"));
+        int comment_count = 0;
 
         for (Entity commentEntity : results.asIterable()) {
             long id = commentEntity.getKey().getId();
-            String comment =  (String) commentEntity.getProperty("comment");
+            String comment = (String) commentEntity.getProperty("comment");
             String name = (String) commentEntity.getProperty("name");
             long timestamp = (long) commentEntity.getProperty("timestamp");
             Comments newComment =  new Comments(id, comment, name, timestamp);
             comments.add(newComment);
-            count_comments++;
-            if (count_comments >= no_of_comments ) {
+            if (++comment_count >= comment_count_target) {
                 break;
             }
         }
