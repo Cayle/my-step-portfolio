@@ -103,3 +103,9 @@ async function getCommentCount(){
     commentContainer.innerHTML = commentHtml;
     
 }
+
+function deleteComments() {
+    fetch('/delete-data', {method: 'POST'});
+    window.location.reload();
+    // alert("yes");
+}

@@ -34,6 +34,7 @@ import javax.servlet.http.HttpServletResponse;
 /** Servlet that returns some example content. TODO: modify this file to handle comments data */
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
+    static ArrayList<Long> commentIds = new ArrayList<Long>();
 
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -44,11 +45,14 @@ public class DataServlet extends HttpServlet {
         int result_length =0;
 
         for (Entity commentEntity : results.asIterable()) {
+            long id = commentEntity.getKey().getId();
+            commentIds.add(id);
             result_length++;
         }
 
         List<Comments> comments = new ArrayList<>();
         int comment_count_target = Integer.parseInt(request.getParameter("comment_count"));
+
         int comment_count = 0;
 
         for (Entity commentEntity : results.asIterable()) {
