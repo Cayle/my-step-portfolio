@@ -17,7 +17,7 @@
  */
 $(document).ready(function () {
   $(".dropdown-trigger").dropdown();
-  $('.tabs').tabs();
+  $(".tabs").tabs();
 
   
 });
@@ -29,7 +29,7 @@ $(document).ready(function () {
 
 function randomFunFacts() {
   const funFacts = [
-    'I"m a rising sophomore Computer Science major at Fisk University.',
+    "I'm a rising sophomore Computer Science major at Fisk University.",
     "This is my first internship.",
     "I was raised and high-schooled in Lagos, Nigeria.",
     "I speak three languages: English, and two native lanuages, Yoruba and Efik",
@@ -87,14 +87,14 @@ function changePattern(pattern) {
   }
 }
 function createCommentElement(eachComment) {
-    const divElement = document.createElement('div');
+    const divElement = document.createElement("div");
     divElement.className = "col s12 responsive-spaced-box";
 
-    const pElement = document.createElement('p');
+    const pElement = document.createElement("p");
     pElement.className = "z-depth-5 flow-text comment-text";
     pElement.innerHTML = eachComment.comment;
 
-    const spanElement = document.createElement('span');
+    const spanElement = document.createElement("span");
     spanElement.className = "span-text";
     spanElement.innerHTML = "By: " + eachComment.name;
 
@@ -112,7 +112,7 @@ async function getCommentCount(){
     var commentHtml = "";
     var commentContainer = document.getElementById("comment-container");
 
-    var mainDivElement = document.getElementById('commentContainer');
+    var mainDivElement = document.getElementById("commentContainer");
     mainDivElement.innerHTML = "";
 
     message_json.forEach(function(comments) {
@@ -120,10 +120,10 @@ async function getCommentCount(){
     })
 
     commentContainer.innerHTML = commentHtml;
-    
 }
 
 function deleteComments() {
-    fetch('/delete-data', {method: 'POST'});
+    fetch("/delete-data", {method: "POST"});
     window.location.reload();
 }
+
