@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -26,7 +27,7 @@
 
     <title>Caleb's Portfolio</title>
   </head>
-  <body class="body-image" onload="getCommentCount()">
+  <body class="body-image" onload="getCommentCount()" id="body-load">
     <div class="navbar-fixed">
       <!-- Dropdown for Color -->
       <ul id="dropdown1" class="dropdown-content">
@@ -232,6 +233,8 @@
 
 
     <p id = "comment-container"></p>
+
+    <button onclick="deleteComments()">Delete All Comments</button>
 
     <form method="post" action="/data">
         <input type="text" name="comment" placeholder="Comment" >
