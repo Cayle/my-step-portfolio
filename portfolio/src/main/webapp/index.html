@@ -27,7 +27,7 @@
 
     <title>Caleb's Portfolio</title>
   </head>
-  <body class="body-image" onload="getCommentCount(); userAuth();" id="body-load">
+  <body class="body-image" onload="getCommentCount(); userAuth(); createMap();" id="body-load">
     <div class="navbar-fixed">
       <!-- Dropdown for Color -->
       <ul id="dropdown1" class="dropdown-content">
@@ -241,7 +241,7 @@
       </div>
         <!-- <div class="row"> -->
             <a name="add-a-comment"></a>
-            <form name="addComment" class="row user-auth" method="post" action="/data" id="commentForm">
+            <form name="addComment" class="row" method="post" action="/data" id="commentForm">
                 <div class="input-field col s12 m12 l4">
                     <input id="last_name" type="text" name="name">
                     <label for="last_name">Your Name</label>

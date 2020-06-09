@@ -131,10 +131,10 @@ async function userAuth() {
   var userStatus = user_details_in_json.userStatus;
 
   if (userStatus == "true") {
-    document.getElementById("commentForm").style.display = "inherit";
     document.getElementById("logIn").innerText = "LOG OUT";
     document.getElementById("logIn").href = user_details_in_json.logoutUrl;
   } else {
+    document.getElementById("commentForm").classList.add("hide");
     document.getElementById("logIn").href = user_details_in_json.loginUrl;
   }
 }
