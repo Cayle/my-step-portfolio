@@ -202,7 +202,59 @@
             </blockquote>
         </div>
       </div>
-
+      <div class="row">
+        <div class="col s12 m7 l7">
+            <div class="row">
+                <div class="col s4">
+                    How many comments do you want displayed:
+                </div>
+                <div class="col s4">
+                    <input type="number" min="1" max="4" value="4" id="comment_count">
+                </div>
+                <div class="col s4">
+                    <button onclick="getCommentCount()" class="btn-large">YES !</button>
+                </div>
+            </div>
+        </div>
+        <div class="col s12 m5 l5">
+            <div class="row">
+                <div class="col s6">
+                    <a href="" class="btn-large" onclick="deleteComments()">Delete Comments</a>
+                </div>
+                <div class="col s6">
+                    <a href="#add-a-comment" class="btn-large">Add a comment</a>
+                </div>
+            </div>
+        </div>
+      </div>
+      <div class="row" id="commentContainer">
+        <div id="comments" class="col s12 responsive-spaced-box">
+            <p class="z-depth-5 flow-text comment-text">
+                This is the first comment
+            </p>
+        </div>
+        <div id="comments" class="col s12 responsive-spaced-box">
+            <p class="z-depth-5 flow-text comment-text">
+                This is the second comment
+            </p>
+        </div>
+      </div>
+        <!-- <div class="row"> -->
+            <a name="add-a-comment"></a>
+            <form name="addComment" class="row" method="post" action="/data">
+                <div class="input-field col s12 m12 l4">
+                    <input id="last_name" type="text" name="name">
+                    <label for="last_name">Your Name</label>
+                </div>
+                <div class="input-field col s12 m12 l6">
+                    <textarea id="comment" class="materialize-textarea" name="comment"></textarea>
+                    <label for="comment">Comment</label>
+                </div>
+                <div class="input-field col s12 m12 l2">
+                    <button type="submit" class="btn-large">Submit</button>
+            </form>
+        <!-- </div> -->
+      <!-- </div>     -->
     </div>
 
     <footer class="page-footer" id="color-id">
@@ -225,23 +277,6 @@
         <!-- </div> -->
       </div>
     </footer>
-
-    <div>
-        <input type="number" min="1" max="4" value="4" id="comment_count">
-        <button onclick="getCommentCount()">GO !</button>
-    </div>
-
-
-    <p id = "comment-container"></p>
-
-    <button onclick="deleteComments()">Delete All Comments</button>
-
-    <form method="post" action="/data">
-        <input type="text" name="comment" placeholder="Comment" >
-        <input type="text" name="name" placeholder="Name" >
-        <button type="submit">Submit Comment</button>
-    </form>
-
     <!--JavaScript at end of body for optimized loading-->
     <script type="text/javascript" src="js/materialize.min.js"></script>
     <!-- Importing my local javascript -->
