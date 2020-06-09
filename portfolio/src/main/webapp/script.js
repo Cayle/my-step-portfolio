@@ -90,7 +90,7 @@ function createCommentElement(eachComment) {
   const pElement = document.createElement("p");
   pElement.className = "z-depth-5 flow-text comment-text";
   pElement.innerHTML = eachComment.comment;
-
+  
   const spanElement = document.createElement("span");
   spanElement.className = "span-text";
   spanElement.innerHTML =
@@ -109,12 +109,14 @@ async function getCommentCount() {
   var commentHtml = "";
   var commentContainer = document.getElementById("comment-container");
 
+
   var mainDivElement = document.getElementById("commentContainer");
   mainDivElement.innerHTML = "";
 
   message_json.forEach(function (comments) {
     mainDivElement.appendChild(createCommentElement(comments));
   });
+
 
   commentContainer.innerHTML = commentHtml;
 }
@@ -138,3 +140,4 @@ async function userAuth() {
     document.getElementById("logIn").href = user_details_in_json.loginUrl;
   }
 }
+
