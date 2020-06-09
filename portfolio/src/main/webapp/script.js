@@ -17,26 +17,23 @@
  */
 $(document).ready(function () {
   $(".dropdown-trigger").dropdown();
-  $('.tabs').tabs();
-
-  
+  $(".tabs").tabs();
 });
 
-        
 /**
  * Adds a random fun fact about me on each click.
  */
 
 function randomFunFacts() {
   const funFacts = [
-    'I"m a rising sophomore Computer Science major at Fisk University.',
+    "I'm a rising sophomore Computer Science major at Fisk University.",
     "This is my first internship.",
     "I was raised and high-schooled in Lagos, Nigeria.",
     "I speak three languages: English, and two native lanuages, Yoruba and Efik",
     "I listen music a lot, my favorite genres are: rap, pop, and trap.",
     "I also love doing my freestyle to lots of youtube beats, I prolly have enough tracks to make an album :)",
     "Attending open mics and karaokes is my thing.",
-    "I participated in Google's CSSI-HBCU, Summer 2019 at NCCU."
+    "I participated in Google's CSSI-HBCU, Summer 2019 at NCCU.",
   ];
 
   // Picking a random fact.
@@ -62,7 +59,7 @@ function changeColor(color) {
   for (var i = 0; i < color_boxes.length; i++) {
     color_boxes[i].style.backgroundColor = color;
     if (i == 1) {
-        color_boxes[i].style.color = color;
+      color_boxes[i].style.color = color;
     }
   }
 }
@@ -87,43 +84,57 @@ function changePattern(pattern) {
   }
 }
 function createCommentElement(eachComment) {
-    const divElement = document.createElement('div');
-    divElement.className = "col s12 responsive-spaced-box";
+  const divElement = document.createElement("div");
+  divElement.className = "col s12 responsive-spaced-box";
 
-    const pElement = document.createElement('p');
-    pElement.className = "z-depth-5 flow-text comment-text";
-    pElement.innerHTML = eachComment.comment;
+  const pElement = document.createElement("p");
+  pElement.className = "z-depth-5 flow-text comment-text";
+  pElement.innerHTML = eachComment.comment;
 
-    const spanElement = document.createElement('span');
-    spanElement.className = "span-text";
-    spanElement.innerHTML = "By: " + eachComment.name;
+  const spanElement = document.createElement("span");
+  spanElement.className = "span-text";
+  spanElement.innerHTML =
+    "By: " + eachComment.name + " with email " + eachComment.email;
 
-    divElement.appendChild(pElement);
-    divElement.appendChild(spanElement);
-    return divElement;
-
+  divElement.appendChild(pElement);
+  divElement.appendChild(spanElement);
+  return divElement;
 }
 
-async function getCommentCount(){
-    var comment_count = document.getElementById("comment_count").value;
-    const response = await fetch("/data?comment_count=" + comment_count);
-    const message_json = await response.json();
-    
-    var commentHtml = "";
-    var commentContainer = document.getElementById("comment-container");
+async function getCommentCount() {
+  var comment_count = document.getElementById("comment_count").value;
+  const response = await fetch("/data?comment_count=" + comment_count);
+  const message_json = await response.json();
 
-    var mainDivElement = document.getElementById('commentContainer');
-    mainDivElement.innerHTML = "";
+  var commentHtml = "";
+  var commentContainer = document.getElementById("comment-container");
 
-    message_json.forEach(function(comments) {
-        mainDivElement.appendChild(createCommentElement(comments));
-    })
+  var mainDivElement = document.getElementById("commentContainer");
+  mainDivElement.innerHTML = "";
 
-    commentContainer.innerHTML = commentHtml;
-    
+  message_json.forEach(function (comments) {
+    mainDivElement.appendChild(createCommentElement(comments));
+  });
+
+  commentContainer.innerHTML = commentHtml;
 }
 
 function deleteComments() {
-    fetch('/delete-data', {method: 'POST'});
-    window.location.reload();
+  fetch("/delete-data", { method: "POST" });
+  window.location.reload();
+}
+
+async function userAuth() {
+  const response = await fetch("/user-auth");
+  const user_details_in_json = await response.json();
+
+  var userStatus = user_details_in_json.userStatus;
+
+  if (userStatus == "true") {
+    document.getElementById("commentForm").style.display = "inherit";
+    document.getElementById("logIn").innerText = "LOG OUT";
+    document.getElementById("logIn").href = user_details_in_json.logoutUrl;
+  } else {
+    document.getElementById("logIn").href = user_details_in_json.loginUrl;
+  }
 }

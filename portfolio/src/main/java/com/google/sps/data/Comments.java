@@ -16,20 +16,27 @@ package com.google.sps.data;
 
 /** An item on a comments. */
 public final class Comments {
-
   private final long id;
   private final String comment;
   private final String name;
+  private final String email;
   private final long timestamp;
 
-  public Comments(long id, String comment, String name, long timestamp) {
+  public Comments(
+    long id,
+    String comment,
+    String name,
+    String email,
+    long timestamp
+  ) {
     this.id = id;
     this.comment = comment;
     this.name = name;
+    this.email = email;
     this.timestamp = timestamp;
   }
 
-  public String toString () {
-      return "Comments: " + this.comment + " Name: " + this.name;
+  public String toString() {
+    return "Comments: " + this.comment + " Name: " + this.name;
   }
 }

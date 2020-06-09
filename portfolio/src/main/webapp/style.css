@@ -66,20 +66,24 @@
 }
 
 #color-id {
-    background-color: grey;
+  background-color: grey;
 }
 
 .responsive-spaced-box {
-    margin: 10px 0px 10px 0px;
-    border-radius: 1%;
+  margin: 10px 0px 10px 0px;
+  border-radius: 1%;
 }
 
 .comment-text {
-    padding: 5px 0px 5px 0px;
-    text-align: center;
+  padding: 5px 0px 5px 0px;
+  text-align: center;
 }
 
 .span-text {
-    text-align: left;
-    font-size: 80%;
+  text-align: left;
+  font-size: 80%;
+}
+
+.user-auth {
+  display: none;
 }
