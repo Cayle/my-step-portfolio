@@ -141,3 +141,21 @@ async function userAuth() {
   }
 }
 
+/** Creates a map and adds it to the page. */
+function createMap() {
+  const map = new google.maps.Map(
+      document.getElementById("map"),
+      {center: {lat: 37.422, lng: -122.084}, zoom: 14});
+  const marker = new google.maps.Marker({position : {lat: 37.422, lng: -122.084}, map: map });
+  const infoWindowContent = document.createElement("p");
+  infoWindowContent.className = "z-depth-5 flow-text comment-text";
+  infoWindowContent.innerHTML = "This is the GooglePlex, Google's headquarter in Mountain View, California.";
+
+  var infowindow = new google.maps.InfoWindow({
+    content: infoWindowContent
+  });
+
+  marker.addListener("click", function() {
+    infowindow.open(map, marker);
+  });
+}
