@@ -142,7 +142,7 @@ async function userAuth() {
 /** Creates a map and adds it to the page. */
 function createMap() {
   const map = new google.maps.Map(
-      document.getElementById('map'),
+      document.getElementById("map"),
       {center: {lat: 37.422, lng: -122.084}, zoom: 14});
   const marker = new google.maps.Marker({position : {lat: 37.422, lng: -122.084}, map: map });
   const infoWindowContent = document.createElement("p");
@@ -153,7 +153,7 @@ function createMap() {
     content: infoWindowContent
   });
 
-  marker.addListener('click', function() {
+  marker.addListener("click", function() {
     infowindow.open(map, marker);
   });
 }
