@@ -42,10 +42,10 @@ public final class FindMeetingQueryBogus {
     if (request.getAttendees().isEmpty()) {
         return Arrays.asList(TimeRange.WHOLE_DAY);
     }
-    else if (request.getDuration() > whole_day) {
+    if (request.getDuration() > whole_day) {
         return Arrays.asList();
     }
-    else if (!areAttendeesIncluded(events, request)) {
+    if (!areAttendeesIncluded(events, request)) {
         return Arrays.asList(TimeRange.WHOLE_DAY);
     }
     System.out.println(!areAttendeesIncluded(events, request));
@@ -67,7 +67,7 @@ public final class FindMeetingQueryBogus {
             continue;
         }
         int length = isAttendeeBooked.size();
-        for (int i =0 ; i < length; i++) {
+        for (int i = 0 ; i < length; i++) {
             Integer[] attendeeTime = isAttendeeBooked.get(i);
             if (Integer.compare(start, attendeeTime[2]) > 0) {
                 attendeeBusyTimeRange[0] = start;
@@ -75,16 +75,14 @@ public final class FindMeetingQueryBogus {
                 attendeeBusyTimeRange[2] = end;
                 isAttendeeBooked.add(attendeeBusyTimeRange);   
             }
-            else if(Integer.compare(start, attendeeTime[2]) <=0){
+            else if(Integer.compare(start, attendeeTime[2]) <= 0){
                 if(Integer.compare(end, attendeeTime[2]) < 0){
                     continue;
                 }
-                else {
                     attendeeBusyTimeRange[0] = attendeeTime[2];
                     attendeeBusyTimeRange[1] = end - attendeeTime[2];
                     attendeeBusyTimeRange[2] = end;
                     isAttendeeBooked.add(attendeeBusyTimeRange);   
-                }
             }
         }
         

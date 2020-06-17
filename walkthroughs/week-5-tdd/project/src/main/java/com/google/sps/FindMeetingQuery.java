@@ -36,10 +36,10 @@ public final class FindMeetingQuery {
     if (request.getAttendees().isEmpty()) {
         return Arrays.asList(TimeRange.WHOLE_DAY);
     }
-    else if (request.getDuration() > whole_day) {
+    if (request.getDuration() > whole_day) {
         return Arrays.asList();
     }
-    else if (!areAttendeesIncluded(events, request)) {
+    if (!areAttendeesIncluded(events, request)) {
         return Arrays.asList(TimeRange.WHOLE_DAY);
     }
 
@@ -91,6 +91,7 @@ public final class FindMeetingQuery {
         }
     }
 
+    //adds a final timerange if the previous meeting didn't last till the end of the day.
     Integer endOfTheDay = 24 * 60;
     if (eventStartTime < endOfTheDay) {
         TimeRange availableTimeToBook = TimeRange.fromStartEnd(eventStartTime, endOfTheDay, false);
