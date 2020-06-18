@@ -16,11 +16,20 @@ package com.google.sps;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Hashtable;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 
 public final class FindMeetingQuery {
+   /**
+   * This method checks if the requested mandatory attendees
+   * are included in the events given.
+   * @param events It contains a collection of event objects
+   * @param request It contains a MeetingRequest object.
+   * @return Boolean -- states if the required attendees are included or not.
+   */
   public Boolean areAttendeesIncluded(Collection<Event> events, MeetingRequest request){
       HashSet<String> bookedEventAttendees = new HashSet<>();
       for (Event event: events) {
@@ -30,27 +39,43 @@ public final class FindMeetingQuery {
       bookedEventAttendees.retainAll(request.getAttendees());
       return !bookedEventAttendees.isEmpty();
   }
-  public Collection<TimeRange> query(Collection<Event> events, MeetingRequest request) {
-    long whole_day = 24*60;
 
-    if (request.getAttendees().isEmpty()) {
-        return Arrays.asList(TimeRange.WHOLE_DAY);
-    }
-    if (request.getDuration() > whole_day) {
-        return Arrays.asList();
-    }
-    if (!areAttendeesIncluded(events, request)) {
-        return Arrays.asList(TimeRange.WHOLE_DAY);
-    }
 
-    ArrayList<Event> newEvents = new ArrayList<>(events);
 
-    //each event has one timeframe, our aim is to combine these timeframes together, in the best way possible:
-        //like takes care of overlapping events.
+  /**
+   * This method sorts the event objects in ascending order of the start time
+   * of the events when attribute (TimeRange object)
+   * @param events It contains a collection of event objects
+   * @return List<Events> sorted version of the events parameter passed.
+   */
+  public List<Event> sortEvents(Collection<Event> events) {
+      List<Event> newEvents = new ArrayList<>(events);
+      
+      List<TimeRange> sortedTimeRanges = new ArrayList<>();
+      for (Event event : events) {
+            sortedTimeRanges.add(event.getWhen());
+      }
+
+      Collections.sort(newEvents, Event.ORDER_BY_WHEN_START_TIME);
+      Collections.sort(sortedTimeRanges, TimeRange.ORDER_BY_START);
+        
+      return newEvents;
+  }
+
+
+  /**
+   * This method gets and saves the given booked TimeRanges while considering overlapping 
+   * TimeRanges.
+   * @param newEvents It contains a collection of sorted event objects.
+   * @param request It contains a MeetingRequest object.
+   * @return ArrayList<TimeRange> contains all the TimeRanges with previously overlapping ones merged.
+   */
+  public ArrayList<TimeRange> getAllBookedTimeRanges(List<Event> newEvents, MeetingRequest request) {
     ArrayList<TimeRange> attendeesBookedTimes = new ArrayList<TimeRange>();    
     if (newEvents.size() == 1)  {
         TimeRange currentEventTime = newEvents.get(0).getWhen();
         attendeesBookedTimes.add(currentEventTime);
+        return attendeesBookedTimes;
     }
     for (int k = 0; k < newEvents.size() - 1; k++){
         TimeRange currentEventTime = newEvents.get(k).getWhen();
@@ -72,8 +97,19 @@ public final class FindMeetingQuery {
             attendeesBookedTimes.add(nextEventTime);
         }
     }
+    return attendeesBookedTimes;
 
-    //get the available time ranges, i.e those which aren't already booked,  and save it.
+  }
+
+
+  /**
+   * This method takes the refined booked TimeRanges and figures out those  
+   * Timeranges that are available.
+   * @param events It contains a collection of event objects
+   * @param request It contains a MeetingRequest object.
+   * @return Collection<TimeRange> contains all the possibly available TimeRanges.
+   */
+  public Collection<TimeRange> getAllTheAvailableTime(ArrayList<TimeRange> attendeesBookedTimes, MeetingRequest request) {
     Collection<TimeRange> availableTimeRanges = new ArrayList<>();
     Integer eventStartTime = 0;
     for (int l = 0; l < attendeesBookedTimes.size(); l++) {
@@ -91,12 +127,47 @@ public final class FindMeetingQuery {
         }
     }
 
-    //adds a final timerange if the previous meeting didn't last till the end of the day.
+    //adds a final TimeRange if the previous meeting didn't last till the end of the day.
     Integer endOfTheDay = 24 * 60;
     if (eventStartTime < endOfTheDay) {
         TimeRange availableTimeToBook = TimeRange.fromStartEnd(eventStartTime, endOfTheDay, false);
         availableTimeRanges.add(availableTimeToBook);
     }
+
+    return availableTimeRanges;
+  }
+
+
+  /**
+   * This method uses the above helper functions to decide the available time 
+   * based on the booked events and requested duration and attendees.
+   * @param events It contains a collection of event objects
+   * @param request It contains a MeetingRequest object.
+   * @return Collection<TimeRange> contains all the time slot available.
+   */
+  public Collection<TimeRange> query(Collection<Event> events, MeetingRequest request) {
+    long whole_day = 24*60;
+
+    if (request.getAttendees().isEmpty()) {
+        return Arrays.asList(TimeRange.WHOLE_DAY);
+    }
+    if (request.getDuration() > whole_day) {
+        return Arrays.asList();
+    }
+    if (!areAttendeesIncluded(events, request)) {
+        return Arrays.asList(TimeRange.WHOLE_DAY);
+    }
+
+    List<Event> newEvents = sortEvents(events);
+  
+    /*
+    each event has one timeframe, our aim is to combine these timeframes together, in the best way possible:
+        like takes care of overlapping events.
+    */
+    ArrayList<TimeRange> attendeesBookedTimes = getAllBookedTimeRanges(newEvents, request);
+
+    //get the available time ranges, i.e those which aren't already booked,  and save it.
+    Collection<TimeRange> availableTimeRanges = getAllTheAvailableTime(attendeesBookedTimes, request);
    return availableTimeRanges;
   }
 }
