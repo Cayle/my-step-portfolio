@@ -17,12 +17,14 @@ package com.google.sps;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.Hashtable;
+import java.util.Set;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
 public final class FindMeetingQuery {
+
+    Boolean NoMandatoryAttendees = false;
    /**
    * This method checks if the requested mandatory attendees
    * are included in the events given.
@@ -77,9 +79,18 @@ public final class FindMeetingQuery {
         attendeesBookedTimes.add(currentEventTime);
         return attendeesBookedTimes;
     }
+
+
+    Set<String> optionalAttendees = new HashSet<>(request.getOptionalAttendees());
+  
     for (int k = 0; k < newEvents.size() - 1; k++){
+        Set<String> eventAttendees = newEvents.get(k).getAttendees();
+        if (optionalAttendees.containsAll(eventAttendees) & !NoMandatoryAttendees) {
+            continue;
+        }
         TimeRange currentEventTime = newEvents.get(k).getWhen();
         TimeRange nextEventTime = newEvents.get(k+1).getWhen();
+        
         if (currentEventTime.overlaps(nextEventTime)) {
             Integer currentStartTime = currentEventTime.start();
             Integer nextStartTime = nextEventTime.start();
@@ -109,8 +120,8 @@ public final class FindMeetingQuery {
    * @param request It contains a MeetingRequest object.
    * @return Collection<TimeRange> contains all the possibly available TimeRanges.
    */
-  public Collection<TimeRange> getAllTheAvailableTime(ArrayList<TimeRange> attendeesBookedTimes, MeetingRequest request) {
-    Collection<TimeRange> availableTimeRanges = new ArrayList<>();
+  public Collection<TimeRange> getAllTheAvailableTime(List<Event> newEvents, ArrayList<TimeRange> attendeesBookedTimes, MeetingRequest request) {
+    ArrayList<TimeRange> availableTimeRanges = new ArrayList<>();
     Integer eventStartTime = 0;
     for (int l = 0; l < attendeesBookedTimes.size(); l++) {
         TimeRange bookedTimeRange = attendeesBookedTimes.get(l);
@@ -134,6 +145,36 @@ public final class FindMeetingQuery {
         availableTimeRanges.add(availableTimeToBook);
     }
 
+    Collection<TimeRange> availableTimeRangesWithOptional = new ArrayList<>();
+    Set<String> optionalAttendees = new HashSet<>(request.getOptionalAttendees());
+  
+    //check the booked TimeRange of optional attendees to see if they can be fitted into the available TimeRange already derived.
+    Integer optionalStartTime = 0;
+    for (int j = 0; j < newEvents.size() ; j++)  {
+        Set<String> eventAttendees = newEvents.get(j).getAttendees();
+        if (optionalAttendees.containsAll(eventAttendees)) {
+            TimeRange eventTime = newEvents.get(j).getWhen();
+            for (int i = 0 ; i < availableTimeRanges.size(); i++) {
+                if (availableTimeRanges.get(i).contains(eventTime)) {
+                    if (optionalStartTime < eventTime.start()) {
+                        TimeRange newAvailableTime = TimeRange.fromStartEnd(optionalStartTime, eventTime.start(), false);
+                        availableTimeRangesWithOptional.add(newAvailableTime);
+                    }
+                    optionalStartTime = eventTime.end();
+                }
+            }
+        }
+    }
+    if (optionalStartTime < endOfTheDay) {
+        TimeRange availableTimeToBook = TimeRange.fromStartEnd(eventStartTime, endOfTheDay, false);
+        availableTimeRangesWithOptional.add(availableTimeToBook);
+    }
+
+    //confirms if any additional TimeRange was added.
+    if (optionalStartTime != 0) {
+        return availableTimeRangesWithOptional;
+    }
+
     return availableTimeRanges;
   }
 
@@ -149,25 +190,35 @@ public final class FindMeetingQuery {
     long whole_day = 24*60;
 
     if (request.getAttendees().isEmpty()) {
-        return Arrays.asList(TimeRange.WHOLE_DAY);
+        if (request.getOptionalAttendees().isEmpty()) {
+            return Arrays.asList(TimeRange.WHOLE_DAY);
+        }
     }
+
     if (request.getDuration() > whole_day) {
         return Arrays.asList();
     }
     if (!areAttendeesIncluded(events, request)) {
-        return Arrays.asList(TimeRange.WHOLE_DAY);
+        if (request.getOptionalAttendees().isEmpty()){
+            return Arrays.asList(TimeRange.WHOLE_DAY);
+        }
+        else {
+            NoMandatoryAttendees = true;
+        }  
     }
-
-    List<Event> newEvents = sortEvents(events);
+    List<Event> newEvents = sortEvents(events);    
   
     /*
     each event has one timeframe, our aim is to combine these timeframes together, in the best way possible:
         like takes care of overlapping events.
     */
+   
     ArrayList<TimeRange> attendeesBookedTimes = getAllBookedTimeRanges(newEvents, request);
 
+   
     //get the available time ranges, i.e those which aren't already booked,  and save it.
-    Collection<TimeRange> availableTimeRanges = getAllTheAvailableTime(attendeesBookedTimes, request);
+    Collection<TimeRange> availableTimeRanges = getAllTheAvailableTime(newEvents, attendeesBookedTimes, request);
+    
    return availableTimeRanges;
   }
 }
