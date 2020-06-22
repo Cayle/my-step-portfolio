@@ -18,6 +18,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.Comparator;
 
 /**
  * Event is the container class for when a specific group of people are meeting and are therefore
@@ -35,6 +36,18 @@ public final class Event {
    * @param when The time when the event takes place. Must be non-null.
    * @param attendees The collection of people attending the event. Must be non-null.
    */
+
+   /**
+   * A comparator for sorting events based on the start time of the {%code when} attribute in ascending order.
+   */
+  public static final Comparator<Event> ORDER_BY_WHEN_START_TIME = new Comparator<Event>() {
+    @Override
+    public int compare(Event a, Event b) {
+      return Long.compare(a.when.start(), b.when.start());
+    }
+  };
+
+
   public Event(String title, TimeRange when, Collection<String> attendees) {
     if (title == null) {
       throw new IllegalArgumentException("title cannot be null");
@@ -92,5 +105,10 @@ public final class Event {
     // {@code attendees} must be a set for equals to work as expected. According to the {@code Set}
     // interface documentation, equals will check for set-equality across all set implementations.
     return a.title.equals(b.title) && a.when.equals(b.when) && a.attendees.equals(b.attendees);
+  }
+
+  @Override
+  public String toString() {
+    return "Title: " + title + ", When: " + when + ", Attendees: " + attendees;
   }
 }
